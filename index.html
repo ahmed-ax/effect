@@ -45,23 +45,11 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap');
     
-    * { scroll-behavior: auto; font-family: 'Cairo', sans-serif; cursor: none !important; }
-    body { background-color: #050505; color: #ffffff; overflow-x: hidden; }
+    /* Core Styles - Cursor Restored to Default */
+    body { background-color: #050505; color: #ffffff; overflow-x: hidden; font-family: 'Cairo', sans-serif; }
 
     /* Three.js Background Canvas */
     #bg-canvas { position: fixed; top: 0; left: 0; z-index: -2; pointer-events: none; }
-
-    /* Custom Luxury Cursor */
-    #cursor {
-      width: 8px; height: 8px; background: #c5a059; border-radius: 50%;
-      position: fixed; pointer-events: none; z-index: 100000;
-      box-shadow: 0 0 15px #c5a059, 0 0 30px #c5a059;
-    }
-    #cursor-glow {
-      width: 40px; height: 40px; border: 1px solid rgba(197, 160, 89, 0.5); border-radius: 50%;
-      position: fixed; pointer-events: none; z-index: 99999;
-      transition: width 0.3s, height 0.3s, background 0.3s;
-    }
 
     /* Cinematic Text Reveal */
     .reveal-text { position: relative; overflow: hidden; }
@@ -114,13 +102,18 @@
       transform: skewX(-25deg); transition: 0.75s;
     }
     .shine-effect:hover::before { left: 150%; }
+
+    /* Floating Icons */
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
   </style>
 </head>
 <body class="antialiased">
   
   <div id="progress-bar"></div>
-  <div id="cursor"></div>
-  <div id="cursor-glow"></div>
   <canvas id="bg-canvas"></canvas>
 
   <!-- Navbar -->
@@ -173,7 +166,6 @@
         <div class="relative z-10 w-full aspect-square rounded-[4rem] overflow-hidden border-2 border-gold/20 luxury-glass p-12 group" data-tilt data-tilt-max="5">
           <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663821338684/WUoDUmKNLJnGypdg.webp" alt="أثر" class="w-full h-full object-contain drop-shadow-[0_0_50px_rgba(197,160,89,0.5)] group-hover:scale-110 transition-transform duration-1000"/>
         </div>
-        <!-- Floating Elements -->
         <div class="absolute -top-10 -right-10 w-32 h-32 luxury-glass rounded-3xl flex items-center justify-center animate-float border border-gold/20">
             <i class="fa-solid fa-camera-retro text-gold text-5xl"></i>
         </div>
@@ -221,7 +213,6 @@
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-        <!-- Card 1 -->
         <div class="portfolio-card relative rounded-[3rem] overflow-hidden group shine-effect" data-aos="fade-up" data-tilt data-tilt-max="7" onclick="openModal('زفاف ملكي فاخر', 'توثيق سينمائي لأدق تفاصيل ليلة العمر.', 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069', 'Royal Wedding')">
           <div class="aspect-[4/5] overflow-hidden">
             <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"/>
@@ -236,7 +227,6 @@
           </div>
         </div>
         
-        <!-- Card 2 -->
         <div class="portfolio-card relative rounded-[3rem] overflow-hidden group shine-effect" data-aos="fade-up" data-aos-delay="200" data-tilt data-tilt-max="7" onclick="openModal('بورتريه العروس', 'إبراز جمال الملامح واللمسات الذهبية.', 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070', 'Portrait')">
             <div class="aspect-[4/5] overflow-hidden">
               <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"/>
@@ -251,7 +241,6 @@
             </div>
         </div>
 
-        <!-- Card 3 -->
         <div class="portfolio-card relative rounded-[3rem] overflow-hidden group shine-effect" data-aos="fade-up" data-aos-delay="400" data-tilt data-tilt-max="7" onclick="openModal('تفاصيل دقيقة', 'المجوهرات واللمسات التي تصنع الفرق.', 'https://images.unsplash.com/photo-1522673607200-1648832cee98?q=80&w=2070', 'Details')">
             <div class="aspect-[4/5] overflow-hidden">
               <img src="https://images.unsplash.com/photo-1522673607200-1648832cee98?q=80&w=2070" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"/>
@@ -299,13 +288,9 @@
       </div>
       
       <div class="grid md:grid-cols-3 gap-12">
-        <!-- Package 1 -->
         <div class="luxury-glass p-16 rounded-[4rem] relative group border border-gold/10 hover:border-gold/30 transition-all" data-aos="fade-up">
-          <h3 class="text-3xl font-black mb-8 text-white/80">باقة الحلم</h3>
-          <div class="mb-12">
-            <span class="text-7xl font-black text-gold">600</span>
-            <span class="text-gray-500 text-xl">ريال</span>
-          </div>
+          <h3 class="text-3xl font-bold mb-8 text-white/80">باقة الحلم</h3>
+          <div class="mb-12"><span class="text-7xl font-black text-gold">600</span> <span class="text-gray-500 text-xl">ريال</span></div>
           <ul class="space-y-8 mb-16 text-gray-400">
             <li class="flex items-center gap-4 font-bold"><i class="fa-solid fa-check text-gold"></i> تصوير فوتوغرافي (4 ساعات)</li>
             <li class="flex items-center gap-4 font-bold"><i class="fa-solid fa-check text-gold"></i> 50 صورة معدلة سينمائياً</li>
@@ -314,14 +299,10 @@
           <a href="https://api.whatsapp.com/send/?phone=966507440452" class="block text-center border-2 border-gold text-gold py-6 rounded-[2rem] font-black text-xl hover:bg-gold hover:text-black transition-all">احجز الباقة</a>
         </div>
 
-        <!-- Package 2 (Featured) -->
         <div class="bg-luxury-black p-16 rounded-[4rem] relative scale-110 z-10 border-2 border-gold shadow-[0_40px_80px_rgba(197,160,89,0.2)]" data-aos="fade-up" data-aos-delay="200">
           <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-gold text-black px-8 py-2 rounded-full text-xs font-black uppercase tracking-[0.4em]">الأكثر طلباً</div>
-          <h3 class="text-3xl font-black mb-8 text-gold">باقة أثر الملكية</h3>
-          <div class="mb-12">
-            <span class="text-8xl font-black text-white">1000</span>
-            <span class="text-gold text-xl">ريال</span>
-          </div>
+          <h3 class="text-3xl font-bold mb-8 text-gold">باقة أثر الملكية</h3>
+          <div class="mb-12"><span class="text-8xl font-black text-white">1000</span> <span class="text-gold text-xl">ريال</span></div>
           <ul class="space-y-8 mb-16 text-gray-300">
             <li class="flex items-center gap-4 font-bold"><i class="fa-solid fa-star text-gold"></i> تغطية كاملة للحفل</li>
             <li class="flex items-center gap-4 font-bold"><i class="fa-solid fa-star text-gold"></i> 100 صورة معدلة فخمة</li>
@@ -331,13 +312,9 @@
           <a href="https://api.whatsapp.com/send/?phone=966507440452" class="block text-center bg-gold text-black py-6 rounded-[2rem] font-black text-xl shadow-2xl hover:scale-105 transition-transform">احجز الباقة الملكية</a>
         </div>
 
-        <!-- Package 3 -->
         <div class="luxury-glass p-16 rounded-[4rem] relative group border border-gold/10 hover:border-gold/30 transition-all" data-aos="fade-up" data-aos-delay="400">
-          <h3 class="text-3xl font-black mb-8 text-white/80">باقة الفخامة</h3>
-          <div class="mb-12">
-            <span class="text-7xl font-black text-gold">1700</span>
-            <span class="text-gray-500 text-xl">ريال</span>
-          </div>
+          <h3 class="text-3xl font-bold mb-8 text-white/80">باقة الفخامة</h3>
+          <div class="mb-12"><span class="text-7xl font-black text-gold">1700</span> <span class="text-gray-500 text-xl">ريال</span></div>
           <ul class="space-y-8 mb-16 text-gray-400">
             <li class="flex items-center gap-4 font-bold"><i class="fa-solid fa-crown text-gold"></i> تغطية الحفل + سيشن خارجي</li>
             <li class="flex items-center gap-4 font-bold"><i class="fa-solid fa-crown text-gold"></i> جميع الصور معدلة بدقة</li>
@@ -361,11 +338,6 @@
         </a>
         <div class="mt-24 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
             <p class="text-gray-600 font-bold uppercase tracking-widest text-xs">© <span id="year"></span> ATHAR PHOTOGRAPHY | ALL RIGHTS RESERVED</p>
-            <div class="flex gap-8 text-gray-500">
-                <a href="#" class="hover:text-gold transition-colors"><i class="fa-brands fa-instagram text-2xl"></i></a>
-                <a href="#" class="hover:text-gold transition-colors"><i class="fa-brands fa-x-twitter text-2xl"></i></a>
-                <a href="#" class="hover:text-gold transition-colors"><i class="fa-brands fa-snapchat text-2xl"></i></a>
-            </div>
         </div>
     </div>
   </footer>
@@ -375,13 +347,12 @@
     <div class="container mx-auto px-6 h-full flex items-center justify-center" onclick="event.stopPropagation()">
       <div class="luxury-glass rounded-[4rem] overflow-hidden max-w-7xl w-full max-h-[90vh] shadow-2xl relative flex flex-col md:flex-row border-2 border-gold/20">
         <button onclick="closeModal()" class="absolute top-10 right-10 w-20 h-20 bg-black/80 rounded-full flex items-center justify-center text-white z-50 hover:bg-gold hover:text-black transition-all"><i class="fa-solid fa-xmark text-4xl"></i></button>
-        <div class="md:w-2/3 bg-black flex items-center justify-center p-6"><img id="modal-img" src="" class="max-w-full max-h-full object-contain rounded-3xl shadow-2xl animate-float"/></div>
+        <div class="md:w-2/3 bg-black flex items-center justify-center p-6"><img id="modal-img" src="" class="max-w-full max-h-full object-contain rounded-3xl shadow-2xl"/></div>
         <div class="md:w-1/3 p-16 flex flex-col justify-center text-right">
           <span id="modal-tag" class="text-gold font-black text-sm mb-8 tracking-[0.5em] uppercase border-b border-gold/20 pb-4 inline-block"></span>
           <h3 id="modal-title" class="text-5xl font-black mb-10 leading-tight"></h3>
           <p id="modal-desc" class="text-gray-400 leading-relaxed text-xl mb-16"></p>
           <div id="image-gallery" class="mb-16 hidden">
-            <p class="text-[10px] text-gray-500 mb-6 font-black uppercase tracking-[0.4em]">معرض الصور:</p>
             <div id="gallery-images" class="flex gap-6 flex-wrap"></div>
           </div>
           <a href="https://api.whatsapp.com/send/?phone=966507440452" class="bg-gold text-black px-12 py-6 rounded-3xl font-black text-xl block text-center shadow-xl">احجز جلسة مماثلة</a>
@@ -435,12 +406,9 @@
 
     // 3. GSAP Animations
     gsap.registerPlugin(ScrollTrigger);
-    
-    // Hero Text Animation
     gsap.from(".gs-hero-text", { duration: 2, y: 100, opacity: 0, ease: "power4.out" });
     gsap.from(".gs-hero-visual", { duration: 2, scale: 0.8, opacity: 0, ease: "expo.out", delay: 0.5 });
 
-    // Stats Counter
     document.querySelectorAll('.counter').forEach(counter => {
         ScrollTrigger.create({
             trigger: counter,
@@ -451,37 +419,14 @@
         });
     });
 
-    // Scroll Progress Bar
     window.addEventListener('scroll', () => {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = (winScroll / height) * 100;
       document.getElementById("progress-bar").style.width = scrolled + "%";
-      
-      const nav = document.getElementById('navbar');
-      winScroll > 50 ? nav.classList.add('py-4') : nav.classList.remove('py-4');
     });
 
-    // 4. Custom Luxury Cursor
-    const cursor = document.getElementById('cursor');
-    const cursorGlow = document.getElementById('cursor-glow');
-    document.addEventListener('mousemove', (e) => {
-      gsap.to(cursor, { duration: 0, x: e.clientX, y: e.clientY });
-      gsap.to(cursorGlow, { duration: 0.3, x: e.clientX - 20, y: e.clientY - 20 });
-    });
-
-    document.querySelectorAll('a, button, .portfolio-card, input').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        gsap.to(cursor, { scale: 4, duration: 0.3, background: 'transparent', border: '1px solid #c5a059' });
-        gsap.to(cursorGlow, { scale: 2, duration: 0.3, background: 'rgba(197, 160, 89, 0.1)' });
-      });
-      el.addEventListener('mouseleave', () => {
-        gsap.to(cursor, { scale: 1, duration: 0.3, background: '#c5a059', border: 'none' });
-        gsap.to(cursorGlow, { scale: 1, duration: 0.3, background: 'transparent' });
-      });
-    });
-
-    // 5. General Functions
+    // 4. App Logic
     AOS.init({ duration: 1200, once: false });
     document.getElementById('year').textContent = new Date().getFullYear();
     
